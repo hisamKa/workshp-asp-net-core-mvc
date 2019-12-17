@@ -8,16 +8,20 @@ using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Controller //herda da classe controller
     {
-        public IActionResult Index()
+        //Todos os métodos retornam o objeto do tipo 'IActionResult' -> resultado de uma ação
+        public IActionResult Index()//método index
         {
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult About()//CONTROLADOR HOME NA AÇÃO ABOUT PASSOU A FRASE P/CHAVE MESSAGE DO OBJETO VIEWDATA
         {
-            ViewData["Message"] = "Your application description page.";
+            //Acessou objeto chamado ViewData, esse objeto na chave message vai receber  a frase
+            ViewData["Message"] = "Salles Web MVC App from C# Course";//criar app vendas p/nosso curso
+          
+            ViewData["Professor"] = "Nelio Alves";
 
             return View();
         }
