@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Models;
 using SalesWebMvc.Data;
+using SalesWebMvc.Services;
 
 namespace SalesWebMvc
 {
@@ -43,7 +44,7 @@ namespace SalesWebMvc
 
             //Registrar nosso serviço no sistema de injeção de dependencias da aplicação
             services.AddScoped<SeedingService>();
-
+            services.AddScoped<SellerService>();
 
 
 
