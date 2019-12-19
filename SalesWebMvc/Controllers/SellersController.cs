@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Services;
+using SalesWebMvc.Models.ViewModels;
 
 namespace SalesWebMvc.Controllers
 {
@@ -12,10 +13,12 @@ namespace SalesWebMvc.Controllers
     {
 
         private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
 
-        public SellersController(SellerService sellerService)
+        public SellersController(SellerService sellerService,DepartmentService departmentService)
         {
             _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()//chamei o controlador
@@ -24,9 +27,12 @@ namespace SalesWebMvc.Controllers
             return View(list);
         }
 
-        public IActionResult Create()
+        public IActionResult Create()//Metodo create|Vai abrir o formulario p/cadastrar vendedor
         {
-            return View();
+            //carregar dptos
+            var departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel { Departments = departments };
+            return View(viewModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
